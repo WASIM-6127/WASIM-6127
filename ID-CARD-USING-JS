@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student ID</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .student-id {
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      width: 300px;
+      text-align: left;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .student-photo {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    h2, p {
+      margin: 10px 0;
+    }
+
+    #update-id {
+      padding: 10px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      width: 100%;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="card-container">
+    <div class="student-id" id="current-card">
+      <img src="https://via.placeholder.com/300" alt="Student Photo" class="student-photo" onclick="uploadImage('current-card')">
+      <h2>Name: John Doe</h2>
+      <p>Student ID: S12345</p>
+      <p>DOB: January 1, 2000</p>
+      <p>Major: Computer Science</p>
+      <p>Email: john.doe@example.com</p>
+      <p>Phone: +1 (123) 456-7890</p>
+      <p>Address: 123 Main Street, Cityville</p>
+      <button id="update-id" onclick="updateStudentID()">Create New Card</button>
+    </div>
+  </div>
+
+  <script>
+    let counter = 1; // Counter for unique IDs
+
+    function uploadImage(cardId) {
+      var input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+
+      input.addEventListener('change', function () {
+        var file = input.files[0];
+
+        if (file) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            const imgId = 'student-photo-' + counter;
+            const newImg = document.createElement('img');
+            newImg.src = e.target.result;
+            newImg.alt = 'Student Photo';
+            newImg.id = imgId;
+            newImg.className = 'student-photo';
+            newImg.onclick = function() { uploadImage(cardId); };
+
+            // Replace the existing image inside the specified card
+            const currentCard = document.getElementById(cardId);
+            const existingImage = currentCard.querySelector('.student-photo');
+            if (existingImage) {
+              currentCard.replaceChild(newImg, existingImage);
+            } else {
+              currentCard.appendChild(newImg);
+            }
+
+            counter++;
+          };
+
+          reader.readAsDataURL(file);
+        }
+      });
+
+      input.click();
+    }
+
+    function updateStudentID() {
+      // Prompt user for details
+      var name = prompt("Enter Name:");
+      var studentID = prompt("Enter Student ID:");
+      var dob = prompt("Enter Date of Birth:");
+      var major = prompt("Enter Major:");
+      var email = prompt("Enter Email:");
+      var phone = prompt("Enter Phone:");
+      var address = prompt("Enter Address:");
+
+      // Create a new card with updated information and a new image
+      const newCardId = 'new-card-' + counter;
+      const newCard = document.createElement('div');
+      newCard.className = 'student-id';
+      newCard.id = newCardId;
+      newCard.innerHTML = `
+        <img src="https://via.placeholder.com/300" alt="Student Photo" class="student-photo" onclick="uploadImage('${newCardId}')">
+        <h2>Name: ${name}</h2>
+        <p>Student ID: ${studentID}</p>
+        <p>DOB: ${dob}</p>
+        <p>Major: ${major}</p>
+        <p>Email: ${email}</p>
+        <p>Phone: ${phone}</p>
+        <p>Address: ${address}</p>
+        <button id="update-id" onclick="updateStudentID()">Create New Card</button>
+      `;
+
+      // Append the new card within the card container
+      document.getElementById('card-container').appendChild(newCard);
+    }
+  </script>
+
+</body>
+</html>
