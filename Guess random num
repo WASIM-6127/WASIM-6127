@@ -1,0 +1,37 @@
+
+let randomNumber = Math.floor(Math.random() * 100)+1 ;
+//To get an integer num
+let userNumber;
+let count = 0; //To count the attempts
+
+do {
+
+//User enter a num until it's correct 
+  userNumber = prompt("Enter a number from 1 to 100 : ");
+  userNumber = Number.parseInt(userNumber);
+
+//To give clue or hint to the user to find that random num
+  if (userNumber < randomNumber) {
+    console.log("Your number is less than the actual number");
+  } 
+
+else if (userNumber > randomNumber) {
+    console.log("Your number is greater than the actual number");
+  } 
+
+else {
+    console.log("You have guessed the correct number");
+  }
+ 
+ count++;
+// to increase the attempts
+} 
+
+while (userNumber != randomNumber);
+//check condition
+
+//Output 
+console.log("The actual number was " + randomNumber);
+
+//To show how many attempts user find the random num in 100 attempt 
+console.log("Your score is " + (100 - count));
