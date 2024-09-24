@@ -1,6 +1,7 @@
 - 👋 Hi, I’m @WASIM-6127
 - 👀 I’m interested in learning new things 
 - 🌱 I’m currently learning programming languages
+- I have learnerd Programming languages like Javascript, Python,C++,C,Java , MySQL other
 - 📫 To reach me on this Telegram link https://t.me/WASIM_SHAIKH_69
 
 <!---
