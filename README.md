@@ -12,6 +12,7 @@ I am a passionate Full Stack Web Developer and technology enthusiast with experi
 ## 🏆 GitHub Trophies
 ![](https://github-profile-trophy.vercel.app/?username=WASIM-6127&theme=radical&no-frame=false&no-bg=true&margin-w=4)
 
+<!--
 ### 🔝 Top Contributed Repo
 ![](https://github-contributor-stats.vercel.app/api?username=WASIM-6127&limit=5&theme=dark&combine_all_yearly_contributions=true)
 
